@@ -5,9 +5,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <ProgressBar
+            android:id="@+id/progress_spinner"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+    <TextView
+            android:id="@+id/empty_view"
+            android:text="@string/empty_view_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_width="match_parent"/>
 

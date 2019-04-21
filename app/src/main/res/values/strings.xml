@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SampleAppBasic</string>
+    <string name="title_repo_list">Organization Repositories</string>
+    <string name="empty_view_message">No results to display</string>
+    <string name="welcome_title">Welcome!</string>
+    <string name="welcome_title_instruction">Please enter the GitHub organization name that you would like to search for</string>
+    <string name="enter_org_name_hint">Git Hub Org. name here</string>
+    <string name="btn_enter_org_name">Submit</string>
 </resources>

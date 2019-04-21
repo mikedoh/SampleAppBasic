@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampleappbasic.R
 
-class RepoListAdapter(private val repositoryList: ArrayList<GitHubRepository>) : RecyclerView.Adapter<RepoListAdapter.RepositoryViewHolder>() {
+class RepoListAdapter(private var repositoryList: ArrayList<GitHubRepository> = ArrayList()) : RecyclerView.Adapter<RepoListAdapter.RepositoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
         return RepositoryViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_repo, parent, false))
@@ -20,6 +20,11 @@ class RepoListAdapter(private val repositoryList: ArrayList<GitHubRepository>) :
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
         holder.bind(repositoryList[position])
+    }
+
+    fun updateRepoList(repoList: ArrayList<GitHubRepository>) {
+        repositoryList = repoList
+        notifyDataSetChanged()
     }
 
     class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

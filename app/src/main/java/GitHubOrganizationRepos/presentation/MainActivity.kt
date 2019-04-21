@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sampleappbasic.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainFragment.HasRepositoryListPage {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -12,12 +12,22 @@ class MainActivity : AppCompatActivity() {
         //todo dagger
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_container, RepoListFragment(), null)
-            .addToBackStack(null)
+            .add(R.id.fragment_container, MainFragment(), null)
             .commit()
 
-//        supportActionBar.title = "Organization Repositories"
+        setSupportActionBar(findViewById(R.id.toolbar))
+
+        //todo put in the strings.xml
+        supportActionBar?.title = "Organization Repositories"
     }
 
+    //todo dagger
+    override fun goToRepositoryListPage(orgName: String) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, RepoListFragment(), null)
+            .addToBackStack(null)
+            .commit()
+    }
 
 }
