@@ -15,9 +15,9 @@ class RepoListViewModel(val useCase: GitHubOrganizationReposUseCase) : ViewModel
 
     fun getRepoList(): LiveData<RepoListState> = repoList
 
-    fun getTopThreeOrganizationRepos(): Disposable {
+    fun getTopThreeOrganizationRepos(orgName: String): Disposable {
 
-        return useCase.getOrganizationRepos()
+        return useCase.getOrganizationRepos(orgName)
             .doOnSubscribe {repoList.value = RepoListState.Loading}
             .map {
                 it.apply {

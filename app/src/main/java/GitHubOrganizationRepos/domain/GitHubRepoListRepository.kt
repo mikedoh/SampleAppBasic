@@ -8,10 +8,9 @@ import io.reactivex.schedulers.Schedulers
 val service = lazy { RetrofitClient.instance.create(GitHubOrganizationService::class.java) }
 
 class GitHubRepoListRepository {
-    //todo Make organization name parameters dynamic
     //todo should we do subscribeOn and observeOn here? try to google
-    fun getOrganizatinoRepos() =
-        service.value.getOrganizationRepos("nytimes")
+    fun getOrganizatinoRepos(orgName: String) =
+        service.value.getOrganizationRepos(orgName)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 }
