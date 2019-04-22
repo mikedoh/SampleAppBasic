@@ -1,6 +1,9 @@
 package GitHubOrganizationRepos
 
 import GitHubOrganizationRepos.data.GitHubRepository
+import GitHubOrganizationRepos.presentation.KEY_URL
+import GitHubOrganizationRepos.presentation.WebViewActivity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +33,10 @@ class RepoListAdapter(private var repositoryList: ArrayList<GitHubRepository> = 
     class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(repository: GitHubRepository){
             itemView.findViewById<TextView>(R.id.content_org_name).text = repository.name
+
+            val intent = Intent(itemView.context, WebViewActivity::class.java)
+            intent.putExtra(KEY_URL, repository.html_url)
+            itemView.setOnClickListener { itemView.context.startActivity(intent) }
         }
     }
 }

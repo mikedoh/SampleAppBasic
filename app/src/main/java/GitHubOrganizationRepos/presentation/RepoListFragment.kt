@@ -22,7 +22,7 @@ class RepoListFragment : Fragment() {
     //todo 3. Error Handling
     //todo 4.1 Adding Welcome Fragment
     //todo 4.2 Clicking to load via a webView
-    //todo 5. Visual (divider to recycler view, appbar, ...etc)
+    //todo 5. Visual (divider to recycler view, appbar, ...etc), text size
     //todo 6. dagger
     //todo 7. resources disposable of RxJava
     //todo 8. Test
