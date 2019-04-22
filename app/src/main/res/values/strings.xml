@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">SampleAppBasic</string>
-    <string name="tool_bar_title">"Organization Repositories"</string>
+    <string name="app_name">Top Repositories</string>
+    <string name="tool_bar_title">"Top Repositories"</string>
 
     <string name="empty_view_message">No results to display</string>
     <string name="error_message">An error has occurred\nPlease try again</string>

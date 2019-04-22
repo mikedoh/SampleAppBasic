@@ -1,4 +1,4 @@
-package GitHubOrganizationRepos.data
+package githubrepos.data
 
 sealed class RepoListState {
     object Loading : RepoListState()

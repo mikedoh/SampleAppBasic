@@ -1,8 +1,8 @@
-package GitHubOrganizationRepos
+package githubrepos
 
-import GitHubOrganizationRepos.data.GitHubRepository
-import GitHubOrganizationRepos.presentation.KEY_URL
-import GitHubOrganizationRepos.presentation.WebViewActivity
+import githubrepos.data.GitHubRepository
+import githubrepos.presentation.KEY_URL
+import githubrepos.presentation.WebViewActivity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View

@@ -1,6 +1,6 @@
-package GitHubOrganizationRepos.network
+package githubrepos.network
 
-import GitHubOrganizationRepos.data.GitHubRepository
+import githubrepos.data.GitHubRepository
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

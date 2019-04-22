@@ -1,15 +1,16 @@
-package GitHubOrganizationRepos.presentation
+package githubrepos.presentation
 
-import GitHubOrganizationRepos.data.GitHubRepository
-import GitHubOrganizationRepos.data.RepoListState
-import GitHubOrganizationRepos.domain.GitHubOrganizationReposUseCase
-import GitHubOrganizationRepos.domain.NUMBER_OF_REPOS_DISPLAY
+import githubrepos.data.GitHubRepository
+import githubrepos.data.RepoListState
+import githubrepos.domain.GitHubOrganizationReposUseCase
+import githubrepos.domain.NUMBER_OF_REPOS_DISPLAY
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.Disposable
+import javax.inject.Inject
 
-class RepoListViewModel(val useCase: GitHubOrganizationReposUseCase) : ViewModel() {
+class RepoListViewModel @Inject constructor(val useCase: GitHubOrganizationReposUseCase) : ViewModel() {
 
     private val repoList: MutableLiveData<RepoListState> = MutableLiveData()
 

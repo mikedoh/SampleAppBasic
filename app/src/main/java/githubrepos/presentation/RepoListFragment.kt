@@ -1,9 +1,5 @@
-package GitHubOrganizationRepos.presentation
+package githubrepos.presentation
 
-import GitHubOrganizationRepos.RepoListAdapter
-import GitHubOrganizationRepos.data.RepoListState
-import GitHubOrganizationRepos.domain.GitHubOrganizationReposUseCase
-import GitHubOrganizationRepos.domain.GitHubRepoListRepository
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sampleappbasic.R
+import githubrepos.GitHubRepoApplication
+import githubrepos.RepoListAdapter
+import githubrepos.data.RepoListState
 import kotlinx.android.synthetic.main.fragment_list.*
 import timber.log.Timber
+import javax.inject.Inject
 
 const val KEY_ORG_NAME = "KEY_ORG_NAME"
 
@@ -33,6 +33,9 @@ class RepoListFragment internal constructor() : Fragment() {
     //todo 10. Write some comments
     private lateinit var viewModel: RepoListViewModel
 
+    @Inject
+    lateinit var viewModelFactory: GitHubRepoListViewModelFactory
+
     companion object {
         fun getInstance(orgName: String): RepoListFragment {
             val fragment = RepoListFragment()
@@ -43,6 +46,10 @@ class RepoListFragment internal constructor() : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        GitHubRepoApplication.appComponent.inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list, container, false)
@@ -60,13 +67,11 @@ class RepoListFragment internal constructor() : Fragment() {
 
     private fun init() {
         recyclerView.layoutManager = LinearLayoutManager(this.context)
-        //todo dagger
         recyclerView.adapter = RepoListAdapter()
 
-        //todo Definitely Dagger
         viewModel = ViewModelProviders.of(
             this,
-            EmployeeListViewModelFactory(GitHubOrganizationReposUseCase(GitHubRepoListRepository()))
+            viewModelFactory
         ).get(RepoListViewModel::class.java)
 
         viewModel.getRepoList().observe(this,

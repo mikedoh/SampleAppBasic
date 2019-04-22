@@ -1,4 +1,4 @@
-package GitHubOrganizationRepos.presentation
+package githubrepos.presentation
 
 import androidx.lifecycle.ViewModel
 
