@@ -16,11 +16,7 @@ class WelcomePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_enter_org_name.setOnClickListener {
-            (activity as HasRepositoryListPage).goToRepositoryListPage(edit_text.text.toString())
+            (activity as HasRepoListPage).goToRepoListPage(edit_text.text.toString())
         }
-    }
-
-    interface HasRepositoryListPage {
-        fun goToRepositoryListPage(orgName: String)
     }
 }
