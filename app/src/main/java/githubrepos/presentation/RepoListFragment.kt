@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.sampleappbasic.R
 import githubrepos.GitHubRepoApplication
 import githubrepos.RepoListAdapter
@@ -64,7 +63,7 @@ class RepoListFragment internal constructor() : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getTopThreeOrganizationRepos(arguments?.getString(KEY_ORG_NAME) ?: "")
+        viewModel.getTopThreeReposByStars(arguments?.getString(KEY_ORG_NAME) ?: "")
     }
 
     private fun init() {

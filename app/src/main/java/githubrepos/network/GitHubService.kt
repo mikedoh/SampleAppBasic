@@ -7,5 +7,5 @@ import retrofit2.http.Path
 
 interface GitHubService {
     @GET("orgs/{name}/repos")
-    fun getOrganizationRepoList(@Path("name") organization: String): Single<ArrayList<GitHubRepository>>
+    fun getOrganizationRepoList(@Path("name") organization: String): Single<List<GitHubRepository>>
 }

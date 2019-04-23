@@ -11,7 +11,7 @@ import githubrepos.presentation.KEY_URL
 import githubrepos.presentation.WebViewActivity
 import kotlinx.android.synthetic.main.item_repo.view.*
 
-class RepoListAdapter(private var repositoryList: ArrayList<GitHubRepository> = ArrayList()) :
+class RepoListAdapter(private var repositoryList: List<GitHubRepository> = emptyList()) :
     RecyclerView.Adapter<RepoListAdapter.RepositoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
@@ -26,7 +26,7 @@ class RepoListAdapter(private var repositoryList: ArrayList<GitHubRepository> = 
         holder.bind(repositoryList[position])
     }
 
-    fun updateRepoList(repoList: ArrayList<GitHubRepository>) {
+    fun updateRepoList(repoList: List<GitHubRepository>) {
         repositoryList = repoList
         notifyDataSetChanged()
     }
@@ -40,9 +40,11 @@ class RepoListAdapter(private var repositoryList: ArrayList<GitHubRepository> = 
                     String.format(context.getString(R.string.repo_star), repository.stargazers_count.toString())
             }
 
-            val intent = Intent(itemView.context, WebViewActivity::class.java)
-            intent.putExtra(KEY_URL, repository.html_url)
-            itemView.setOnClickListener { itemView.context.startActivity(intent) }
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, WebViewActivity::class.java)
+                intent.putExtra(KEY_URL, repository.html_url)
+                itemView.context.startActivity(intent)
+            }
         }
     }
 }
