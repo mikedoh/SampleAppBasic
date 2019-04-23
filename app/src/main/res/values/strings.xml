@@ -5,7 +5,9 @@
     <string name="empty_view_message">No results to display</string>
     <string name="error_message">An error has occurred\nPlease try again</string>
     <string name="welcome_title">Welcome!</string>
-    <string name="welcome_title_instruction">Please enter the GitHub organization name that you would like to search</string>
+    <string name="welcome_title_instruction">Please Enter the GitHub Organization Name</string>
     <string name="enter_org_name_hint">GitHub Organization Name</string>
     <string name="btn_enter_org_name">Submit</string>
+
+    <string name="repo_star">Stars: %s</string>
 </resources>

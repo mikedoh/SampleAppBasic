@@ -1,16 +1,16 @@
 package githubrepos.domain
 
-import githubrepos.network.GitHubOrganizationService
+import githubrepos.network.GitHubService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class GitHubRepoListRepository @Inject constructor(val service: GitHubOrganizationService) {
+class GitHubApiRepository @Inject constructor(val service: GitHubService) {
 
     //todo should we do subscribeOn and observeOn here? try to google
-    fun getOrganizatinoRepos(orgName: String) =
-        service.getOrganizationRepos(orgName)
+    fun getOrganizationRepoList(orgName: String) =
+        service.getOrganizationRepoList(orgName)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 }

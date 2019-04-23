@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sampleappbasic.R
 import githubrepos.GitHubRepoApplication
 import githubrepos.RepoListAdapter
@@ -66,8 +68,12 @@ class RepoListFragment internal constructor() : Fragment() {
     }
 
     private fun init() {
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
-        recyclerView.adapter = RepoListAdapter()
+
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this.context)
+            adapter = RepoListAdapter()
+            addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        }
 
         viewModel = ViewModelProviders.of(
             this,

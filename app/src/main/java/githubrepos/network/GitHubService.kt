@@ -5,7 +5,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface GitHubOrganizationService {
+interface GitHubService {
     @GET("orgs/{name}/repos")
-    fun getOrganizationRepos(@Path("name") organization: String): Single<ArrayList<GitHubRepository>>
+    fun getOrganizationRepoList(@Path("name") organization: String): Single<ArrayList<GitHubRepository>>
 }
