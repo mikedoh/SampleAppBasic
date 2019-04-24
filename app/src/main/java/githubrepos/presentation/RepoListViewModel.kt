@@ -11,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class RepoListViewModel @Inject constructor(val useCase: GitHubOrganizationReposUseCase) : ViewModel() {
+class RepoListViewModel @Inject constructor(private val useCase: GitHubOrganizationReposUseCase) : ViewModel() {
 
     private val repoList: MutableLiveData<RepoListState> = MutableLiveData()
 
