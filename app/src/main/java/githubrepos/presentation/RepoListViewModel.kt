@@ -34,7 +34,7 @@ class RepoListViewModel @Inject constructor(private val useCase: GitHubOrganizat
     }
 
     private fun mapInitialResult(list: List<GitHubRepository>): List<GitHubRepository> {
-        return sortRepoListWithStars(list).subList(0, NUMBER_OF_REPOS_DISPLAY)
+        return sortRepoListWithStars(list).subList(0, Math.min(list.size, NUMBER_OF_REPOS_DISPLAY))
     }
 
     private fun sortRepoListWithStars(list: List<GitHubRepository>): List<GitHubRepository> {

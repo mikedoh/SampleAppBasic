@@ -50,7 +50,7 @@ class RepoListViewModelTest {
     }
 
     @Test
-    fun `Given valid result from usecase, when launch getTopThreeReposByStars(),then Loaded state will emit with valid result`() {
+    fun `Given valid result from useCase, when launch getTopThreeReposByStars(),then Loaded state will emit with valid result`() {
         //Given
         Mockito.`when`(useCase.getOrganizationRepos(any())).thenReturn(Single.just(validRepoList))
 
@@ -71,7 +71,7 @@ class RepoListViewModelTest {
     }
 
     @Test
-    fun `Given valid result from usecase, when launch getTopThreeReposByStars(),then Loading and Loaded state will emit in order`() {
+    fun `Given valid result from useCase, when launch getTopThreeReposByStars(),then Loading and Loaded state will emit in order`() {
         //Given
         Mockito.`when`(useCase.getOrganizationRepos(any())).thenReturn(Single.just(validRepoList))
 
@@ -93,7 +93,7 @@ class RepoListViewModelTest {
     }
 
     @Test
-    fun `Given error from usecase, when launch getTopThreeReposByStars(),then Error state will emit`() {
+    fun `Given error from useCase, when launch getTopThreeReposByStars(),then Error state will emit`() {
         //Given
         val error = Throwable()
         Mockito.`when`(useCase.getOrganizationRepos(any())).thenReturn(Single.error(error))
@@ -107,5 +107,42 @@ class RepoListViewModelTest {
         Mockito.verifyNoMoreInteractions(observer)
     }
 
+    @Test
+    fun `Given repoList with less than two repos returned from useCase, when launch getTopThreeReposByStars(),then Loaded state will emit with valid result`() {
+        //Given
+        val repoListSizeTwo = listOf(
+            GitHubRepository(stargazers_count = 0),
+            GitHubRepository(stargazers_count = 1)
+        )
+        Mockito.`when`(useCase.getOrganizationRepos(any())).thenReturn(Single.just(repoListSizeTwo))
+        val sortedRepoList = repoListSizeTwo.sortedWith(
+            object : Comparator<GitHubRepository> {
+                override fun compare(o1: GitHubRepository, o2: GitHubRepository): Int {
+                    return o2.stargazers_count - o1.stargazers_count
+                }
+            }
+        )
 
+        //When
+        testOBject.getTopThreeReposByStars(DEFAULT_ORG_NAME)
+
+        //Then
+        Mockito.verify(observer, Times(1)).onChanged(eq(Loading))
+        Mockito.verify(observer, Times(1)).onChanged(eq(Loaded(sortedRepoList)))
+        Mockito.verifyNoMoreInteractions(observer)
+    }
+
+    @Test
+    fun `Given empty List returned from useCase, when launch getTopThreeReposByStars(),then Loaded state will emit with empty list`() {
+        //Given
+        Mockito.`when`(useCase.getOrganizationRepos(any())).thenReturn(Single.just(emptyList()))
+
+        //When
+        testOBject.getTopThreeReposByStars(DEFAULT_ORG_NAME)
+
+        //Then
+        Mockito.verify(observer, Times(1)).onChanged(eq(Loading))
+        Mockito.verify(observer, Times(1)).onChanged(eq(Loaded(emptyList())))
+        Mockito.verifyNoMoreInteractions(observer)
+    }
 }
