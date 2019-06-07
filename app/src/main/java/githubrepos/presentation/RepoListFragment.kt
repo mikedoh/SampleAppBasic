@@ -21,17 +21,7 @@ import javax.inject.Inject
 const val KEY_ORG_NAME = "KEY_ORG_NAME"
 
 class RepoListFragment internal constructor() : Fragment() {
-    //todo 1. Empty view
-    //todo 2. Loading spinner
-    //todo 3. Error Handling
-    //todo 4.1 Adding Welcome Fragment
-    //todo 4.2 Clicking to load via a webView
-    //todo 5. Visual (divider to recycler view, appbar, ...etc), text size
-    //todo 6. dagger
-    //todo 7. resources disposable of RxJava
-    //todo 8. Test
-    //todo 9. ConstraintLayout
-    //todo 10. Write some comments
+
     private lateinit var viewModel: RepoListViewModel
 
     @Inject

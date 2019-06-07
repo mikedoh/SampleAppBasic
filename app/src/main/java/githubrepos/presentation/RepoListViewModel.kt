@@ -22,7 +22,8 @@ class RepoListViewModel @Inject constructor(private val useCase: GitHubOrganizat
 
     fun getTopThreeReposByStars(orgName: String): Disposable {
 
-        val disposable = useCase.getOrganizationRepos(orgName)
+        val disposable = useCase
+            .getOrganizationRepos(orgName)
             .doOnSubscribe { repoList.value = RepoListState.Loading }
             .map { mapInitialResult(it) }.subscribe(
                 { result -> repoList.value = RepoListState.Loaded(result) },

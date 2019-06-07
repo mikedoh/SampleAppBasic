@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 class GitHubApiRepository @Inject constructor(val service: GitHubService) {
 
-    //todo should we do subscribeOn and observeOn here? try to google
     fun getOrganizationRepoList(orgName: String) =
         service.getOrganizationRepoList(orgName)
             .subscribeOn(Schedulers.io())
