@@ -3,6 +3,7 @@ package githubrepos.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import githubrepos.GitHubRepoApplication
 import githubrepos.data.GitHubRepository
 import githubrepos.data.RepoListState
 import githubrepos.domain.GitHubOrganizationReposUseCase
@@ -11,7 +12,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class RepoListViewModel @Inject constructor(private val useCase: GitHubOrganizationReposUseCase) : ViewModel() {
+class RepoListViewModel : ViewModel() {
+
+    init {
+        GitHubRepoApplication.appComponent.inject(this)
+    }
+
+    @Inject
+    lateinit var useCase: GitHubOrganizationReposUseCase
 
     private val repoList: MutableLiveData<RepoListState> = MutableLiveData()
 

@@ -11,21 +11,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sampleappbasic.R
-import githubrepos.GitHubRepoApplication
 import githubrepos.RepoListAdapter
 import githubrepos.data.RepoListState
 import kotlinx.android.synthetic.main.fragment_list.*
 import timber.log.Timber
-import javax.inject.Inject
 
 const val KEY_ORG_NAME = "KEY_ORG_NAME"
 
 class RepoListFragment internal constructor() : Fragment() {
 
     private lateinit var viewModel: RepoListViewModel
-
-    @Inject
-    lateinit var viewModelFactory: GitHubRepoListViewModelFactory
 
     companion object {
         fun getInstance(orgName: String): RepoListFragment {
@@ -35,11 +30,6 @@ class RepoListFragment internal constructor() : Fragment() {
             fragment.arguments = bundle
             return fragment
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        GitHubRepoApplication.appComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -64,10 +54,7 @@ class RepoListFragment internal constructor() : Fragment() {
             addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         }
 
-        viewModel = ViewModelProviders.of(
-            this,
-            viewModelFactory
-        ).get(RepoListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(RepoListViewModel::class.java)
 
         viewModel.getRepoList().observe(this,
             Observer<RepoListState> { t ->
